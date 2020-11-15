@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iurac.crm.settings.dao.UserDao">
+    <update id="updatePwd">
+        update t_user set
+            loginPwd=#{newPwd}
+        where id=#{id}
+    </update>
+
+    <select id="login" resultType="com.iurac.crm.settings.domain.User">
+        select * from t_user where loginAct=#{loginAct} and loginPwd=#{loginPwd}
+    </select>
+
+
+    <select id="getUserList" resultType="com.iurac.crm.settings.domain.User">
+        select * from t_user
+    </select>
+
+
+</mapper>
