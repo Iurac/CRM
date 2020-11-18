@@ -8,10 +8,7 @@ import com.iurac.crm.utils.ServiceFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * BelongsProject: workspaceForCrm
@@ -39,6 +36,20 @@ public class SystemInitListener implements ServletContextListener {
             application.setAttribute(code+"List",dicValueList);
         }
 
-        System.out.println("加载完毕。");
+        System.out.println("数据字典加载完毕。");
+        System.out.println("加载阶段转可能性配置文件......");
+
+        Map<String, String> pMap = new HashMap<>();
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("Stage2Possibility");
+        Enumeration<String> enumeration = resourceBundle.getKeys();
+
+        while (enumeration.hasMoreElements()){
+            String key = enumeration.nextElement();
+            String value = resourceBundle.getString(key);
+            pMap.put(key,value);
+        }
+        application.setAttribute("stage2Possibility",pMap);
+
+        System.out.println("阶段转可能性配置文件加载完毕。");
     }
 }

@@ -41,6 +41,79 @@
             #{nextContactTime}
         )
     </insert>
+
+    <select id="getTransactionByCondition" resultType="com.iurac.crm.workbench.domain.Tran">
+        select
+            t.id,
+            u.name as owner,
+            t.name,
+            cu.name as customerId,
+            t.stage,
+            t.type,
+            t.source,
+            co.fullname as contactsId
+        from t_tran t
+        join t_customer cu on t.customerId=cu.id
+        join t_user u on t.owner=u.id
+        join t_contacts co on t.contactsId=co.id
+        <where>
+            <if test="name!=null and name!=''">
+                t.name like '%' #{name} '%'
+            </if>
+            <if test="owner!=null and owner!=''">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test="stage!=null and stage!=''">
+                and t.stage like '%' #{stage} '%'
+            </if>
+            <if test="source!=null and source!=''">
+                and t.source like '%' #{source} '%'
+            </if>
+            <if test="type!=null and type!=''">
+                and t.type like '%' #{type} '%'
+            </if>
+            <if test="contactsName!=null and contactsName!=''">
+                and co.fullname like '%' #{contactsName} '%'
+            </if>
+            <if test="customerName!=null and customerName!=''">
+                and cu.name like '%' #{customerName} '%'
+            </if>
+        </where>
+        order by t.createTime desc
+        limit #{skipCount},#{pageSize}
+    </select>
+
+    <select id="getTotalByCondition" resultType="java.lang.Integer">
+        select
+            count(*)
+        from t_tran t
+        join t_customer cu on t.customerId=cu.id
+        join t_user u on t.owner=u.id
+        join t_contacts co on t.contactsId=co.id
+        <where>
+            <if test="name!=null and name!=''">
+                t.name like '%' #{name} '%'
+            </if>
+            <if test="owner!=null and owner!=''">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test="stage!=null and stage!=''">
+                and t.stage like '%' #{stage} '%'
+            </if>
+            <if test="source!=null and source!=''">
+                and t.source like '%' #{source} '%'
+            </if>
+            <if test="type!=null and type!=''">
+                and t.type like '%' #{type} '%'
+            </if>
+            <if test="contactsName!=null and contactsName!=''">
+                and co.fullname like '%' #{contactsName} '%'
+            </if>
+            <if test="customerName!=null and customerName!=''">
+                and cu.name like '%' #{customerName} '%'
+            </if>
+        </where>
+    </select>
 </mapper>
 
 

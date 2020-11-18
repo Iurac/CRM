@@ -93,4 +93,18 @@
         <url-pattern>/settings/dic/xx.do</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>TranController</servlet-name>
+        <servlet-class>com.iurac.crm.workbench.web.controller.TranController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TranController</servlet-name>
+        <url-pattern>/workbench/transaction/transactionPageList.do</url-pattern>
+        <url-pattern>/workbench/transaction/getActivityListByName.do</url-pattern>
+        <url-pattern>/workbench/transaction/getContactsListByName.do</url-pattern>
+        <url-pattern>/workbench/transaction/getUserList.do</url-pattern>
+        <url-pattern>/workbench/transaction/getCustomerName.do</url-pattern>
+        <url-pattern>/workbench/transaction/save.do</url-pattern>
+    </servlet-mapping>
+
 </web-app>

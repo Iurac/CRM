@@ -42,7 +42,6 @@ public class ClueController extends HttpServlet {
 
         if("/workbench/clue/getUserList.do".equals(path)){
             getUserList(request,response);
-
         }else if("/workbench/clue/save.do".equals(path)){
             save(request,response);
         }else if("/workbench/clue/cluePageList.do".equals(path)){

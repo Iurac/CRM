@@ -34,6 +34,10 @@
     <select id="getCustomerByName" resultType="com.iurac.crm.workbench.domain.Customer">
         select * from t_customer where name=#{company}
     </select>
+
+    <select id="getCustomerName" resultType="java.lang.String">
+        select name from t_customer where name like '%' #{name} '%'
+    </select>
 </mapper>
 
 

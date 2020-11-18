@@ -616,6 +616,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				    <div class="input-group">
 				      <div class="input-group-addon">线索来源</div>
 					  <select class="form-control" id="search-source">
+						  <option></option>
 						  <c:forEach items="${applicationScope.sourceList}" var="s">
 							  <option value="${s.value}">${s.text}</option>
 						  </c:forEach>
@@ -645,6 +646,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				    <div class="input-group">
 				      <div class="input-group-addon">线索状态</div>
 					  <select class="form-control" id="search-state">
+						  <option></option>
 						  <c:forEach items="${applicationScope.clueStateList}" var="cs">
 							  <option value="${cs.value}">${cs.text}</option>
 						  </c:forEach>

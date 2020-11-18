@@ -41,6 +41,13 @@
             #{address}
         )
     </insert>
+
+    <select id="getContactsListByName" resultType="com.iurac.crm.workbench.domain.Contacts">
+        select
+            id, fullname, email, mphone
+        from t_contacts
+        where fullname like '%' #{cname} '%'
+    </select>
 </mapper>
 
 
