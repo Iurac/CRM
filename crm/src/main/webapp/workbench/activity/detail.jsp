@@ -97,7 +97,7 @@
 				dataType:"json",
 				success:function (data){
 					if(data.success){
-						window.open("workbench/activity/index.jsp","workareaFrame");
+						window.open("workbench/activity/index1.jsp","workareaFrame");
 					}else {
 						alert('请求删除失败！');
 					}

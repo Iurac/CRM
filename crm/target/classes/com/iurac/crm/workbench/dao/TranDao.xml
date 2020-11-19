@@ -146,6 +146,12 @@
         left join t_activity a on a.id=t.activityId
         where t.id=#{id}
     </select>
+    <select id="getNumOfStage" resultType="java.util.Map">
+        SELECT stage as name,count(*) as value from t_tran group by stage
+    </select>
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT count(*) from t_tran
+    </select>
 </mapper>
 
 

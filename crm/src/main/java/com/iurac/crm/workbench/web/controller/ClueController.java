@@ -109,7 +109,7 @@ public class ClueController extends HttpServlet {
         boolean flag = clueService.convert(cid,tran,createBy);
 
         if(flag){
-            response.sendRedirect(request.getContextPath()+"/workbench/clue/index.jsp");
+            response.sendRedirect(request.getContextPath()+"/workbench/clue/index1.jsp");
         }
     }
 

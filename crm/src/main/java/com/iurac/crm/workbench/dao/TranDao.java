@@ -16,4 +16,8 @@ public interface TranDao {
     Tran detail(String id);
 
     int changeStage(Tran tran);
+
+    List<Map<String, Object>> getNumOfStage();
+
+    int getTotal();
 }

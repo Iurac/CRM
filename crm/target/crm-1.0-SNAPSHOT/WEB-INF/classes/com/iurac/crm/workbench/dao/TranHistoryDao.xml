@@ -23,6 +23,18 @@
             #{tranId}
         )
     </insert>
+    <select id="getTranHistoryListByTid" resultType="com.iurac.crm.workbench.domain.TranHistory">
+        select
+               id,
+               stage,
+               money,
+               expectedDate,
+               createTime,
+               createBy,
+               tranId
+        from t_tran_history
+        where tranId=#{tid}
+    </select>
 </mapper>
 
 

@@ -7,6 +7,7 @@ import com.iurac.crm.utils.DateTimeUtil;
 import com.iurac.crm.utils.PrintJson;
 import com.iurac.crm.utils.ServiceFactory;
 import com.iurac.crm.utils.UUIDUtil;
+import com.iurac.crm.vo.EchartsVo;
 import com.iurac.crm.vo.PaginationVo;
 import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.Contacts;
@@ -64,7 +65,17 @@ public class TranController  extends HttpServlet {
             getTranHistoryListByTid(request,response);
         }else if("/workbench/transaction/changeStage.do".equals(path)){
             changeStage(request,response);
+        }else if("/workbench/transaction/getEcharts.do".equals(path)){
+            getEcharts(request,response);
         }
+    }
+
+    private void getEcharts(HttpServletRequest request, HttpServletResponse response) {
+        TranService tranService = (TranService) ServiceFactory.getService(new TranServiceImpl());
+
+        EchartsVo echartsVo = tranService.getEcharts();
+
+        PrintJson.printJsonObj(response,echartsVo);
     }
 
     private void changeStage(HttpServletRequest request, HttpServletResponse response) {
@@ -171,7 +182,7 @@ public class TranController  extends HttpServlet {
         boolean flag = tranService.save(tran,customerName);
 
         if(flag) {
-            response.sendRedirect(request.getContextPath()+"/workbench/transaction/index.jsp");
+            response.sendRedirect(request.getContextPath()+"/workbench/transaction/index1.jsp");
         }
     }
 

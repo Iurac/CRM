@@ -1,5 +1,6 @@
 package com.iurac.crm.workbench.service;
 
+import com.iurac.crm.vo.EchartsVo;
 import com.iurac.crm.vo.PaginationVo;
 import com.iurac.crm.workbench.domain.Tran;
 import com.iurac.crm.workbench.domain.TranHistory;
@@ -24,4 +25,6 @@ public interface TranService {
     List<TranHistory> getTranHistoryListByTid(String tid);
 
     boolean changeStage(Tran tran);
+
+    EchartsVo getEcharts();
 }

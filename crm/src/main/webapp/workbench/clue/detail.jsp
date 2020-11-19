@@ -186,7 +186,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                 dataType:"json",
                 success:function (data){
                     if(data.success){
-						window.open("workbench/clue/index.jsp","workareaFrame");
+						window.open("workbench/clue/index1.jsp","workareaFrame");
                     }else {
                         alert('请求删除失败！');
                     }

@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="../jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="../jquery/jquery-1.11.1-min.js"></script>
-<script type="text/javascript" src="../jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+<link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
+<script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -136,7 +136,7 @@
 				安全控制
 				<br><br>
 				<!-- 
-				<a href="org/index.jsp" style="text-decoration: none; color: red;">组织机构</a>
+				<a href="org/index1.jsp" style="text-decoration: none; color: red;">组织机构</a>
 				 -->
 				<a href="dept/index.html">部门管理</a>
 				<br>
