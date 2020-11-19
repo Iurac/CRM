@@ -11,6 +11,7 @@ import com.iurac.crm.vo.PaginationVo;
 import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.Contacts;
 import com.iurac.crm.workbench.domain.Tran;
+import com.iurac.crm.workbench.domain.TranHistory;
 import com.iurac.crm.workbench.service.ActivityService;
 import com.iurac.crm.workbench.service.ContactsService;
 import com.iurac.crm.workbench.service.CustomerService;
@@ -20,6 +21,7 @@ import com.iurac.crm.workbench.service.impl.ContactsServiceImpl;
 import com.iurac.crm.workbench.service.impl.CustomerServiceImpl;
 import com.iurac.crm.workbench.service.impl.TranServiceImpl;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +58,77 @@ public class TranController  extends HttpServlet {
             getCustomerName(request,response);
         }else if("/workbench/transaction/save.do".equals(path)){
             save(request,response);
+        }else if("/workbench/transaction/detail.do".equals(path)){
+            detail(request,response);
+        }else if("/workbench/transaction/getTranHistoryListByTid.do".equals(path)){
+            getTranHistoryListByTid(request,response);
+        }else if("/workbench/transaction/changeStage.do".equals(path)){
+            changeStage(request,response);
         }
+    }
+
+    private void changeStage(HttpServletRequest request, HttpServletResponse response) {
+        TranService tranService = (TranService) ServiceFactory.getService(new TranServiceImpl());
+
+        String id = request.getParameter("id");
+        String stage = request.getParameter("stage");
+        String money = request.getParameter("money");
+        String expectedDate = request.getParameter("expectedDate");
+
+        Tran tran = new Tran();
+        tran.setId(id);
+        tran.setEditTime(DateTimeUtil.getSysTime());
+        tran.setEditBy(((User)request.getSession().getAttribute("user")).getName());
+        tran.setStage(stage);
+        tran.setMoney(money);
+        tran.setExpectedDate(expectedDate);
+
+        ServletContext application = request.getServletContext();
+        Map<String,String> stage2Possibility = (Map<String, String>) application.getAttribute("stage2Possibility");
+
+        String possibility = stage2Possibility.get(stage);
+        tran.setPossibility(possibility);
+
+        boolean flag = tranService.changeStage(tran);
+        Map<String ,Object> map = new HashMap<>();
+        map.put("success",flag);
+        map.put("tran",tran);
+
+        PrintJson.printJsonObj(response,map);
+    }
+
+    private void getTranHistoryListByTid(HttpServletRequest request, HttpServletResponse response) {
+        TranService tranService = (TranService) ServiceFactory.getService(new TranServiceImpl());
+
+        String tid = request.getParameter("id");
+        List<TranHistory> tranHistoryList = tranService.getTranHistoryListByTid(tid);
+
+        ServletContext application = request.getServletContext();
+        Map<String,String> map = (Map<String, String>) application.getAttribute("stage2Possibility");
+
+        for(TranHistory tranHistory : tranHistoryList){
+            String stage = tranHistory.getStage();
+            String possibility = map.get(stage);
+            tranHistory.setPossibility(possibility);
+        }
+
+        PrintJson.printJsonObj(response,tranHistoryList);
+    }
+
+    private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        TranService tranService = (TranService) ServiceFactory.getService(new TranServiceImpl());
+
+        String id = request.getParameter("id");
+        Tran tran = tranService.detail(id);
+
+        String stage = tran.getStage();
+        ServletContext application = request.getServletContext();
+        Map<String,String> map = (Map<String, String>) application.getAttribute("stage2Possibility");
+        String possibility = map.get(stage);
+        tran.setPossibility(possibility);
+
+        request.setAttribute("tran",tran);
+        request.getRequestDispatcher("/workbench/transaction/detail.jsp").forward(request,response);
     }
 
     private void save(HttpServletRequest request, HttpServletResponse response) throws IOException {

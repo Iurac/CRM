@@ -42,6 +42,11 @@
         )
     </insert>
 
+    <update id="changeStage">
+        update t_tran set stage=#{stage},editBy=#{editBy},editTime=#{editTime}
+        where id=#{id}
+    </update>
+
     <select id="getTransactionByCondition" resultType="com.iurac.crm.workbench.domain.Tran">
         select
             t.id,
@@ -55,7 +60,7 @@
         from t_tran t
         join t_customer cu on t.customerId=cu.id
         join t_user u on t.owner=u.id
-        join t_contacts co on t.contactsId=co.id
+        left join t_contacts co on t.contactsId=co.id
         <where>
             <if test="name!=null and name!=''">
                 t.name like '%' #{name} '%'
@@ -113,6 +118,33 @@
                 and cu.name like '%' #{customerName} '%'
             </if>
         </where>
+    </select>
+    <select id="detail" resultType="com.iurac.crm.workbench.domain.Tran">
+        select
+               t.id,
+               u.name as owner,
+               t.money,
+               t.name,
+               t.expectedDate,
+               cu.name as customerId,
+               t.stage,
+               t.type,
+               t.source,
+               a.name as activityId,
+               co.fullname as contactsId,
+               t.createBy,
+               t.createTime,
+               t.editBy,
+               t.editTime,
+               t.description,
+               t.contactSummary,
+               t.nextContactTime
+        from t_tran t
+        join t_user u on u.id=t.owner
+        left join t_contacts co on co.id=t.contactsId
+        join t_customer cu on cu.id=t.customerId
+        left join t_activity a on a.id=t.activityId
+        where t.id=#{id}
     </select>
 </mapper>
 
