@@ -7,7 +7,6 @@ import com.iurac.crm.settings.domain.DicValue;
 import com.iurac.crm.settings.service.DicService;
 import com.iurac.crm.utils.SqlSessionUtil;
 
-import javax.xml.stream.events.DTD;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

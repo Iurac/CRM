@@ -1,7 +1,5 @@
 package com.iurac.crm.workbench.domain;
 
-import java.security.PrivateKey;
-
 /**
  * BelongsProject: workspaceForCrm
  * BelongsPackage: com.iurac.crm.workbench.domain

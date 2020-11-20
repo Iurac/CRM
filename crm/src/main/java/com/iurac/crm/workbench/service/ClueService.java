@@ -1,7 +1,6 @@
 package com.iurac.crm.workbench.service;
 
 import com.iurac.crm.vo.PaginationVo;
-import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.Clue;
 import com.iurac.crm.workbench.domain.ClueRemark;
 import com.iurac.crm.workbench.domain.Tran;

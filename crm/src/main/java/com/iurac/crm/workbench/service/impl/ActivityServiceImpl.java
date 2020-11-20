@@ -9,8 +9,6 @@ import com.iurac.crm.workbench.dao.ActivityRemarkDao;
 import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.ActivityRemark;
 import com.iurac.crm.workbench.service.ActivityService;
-import jdk.nashorn.internal.ir.Flags;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.HashMap;
 import java.util.List;

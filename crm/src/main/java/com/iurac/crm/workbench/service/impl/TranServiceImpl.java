@@ -1,6 +1,5 @@
 package com.iurac.crm.workbench.service.impl;
 
-import com.iurac.crm.settings.domain.User;
 import com.iurac.crm.utils.SqlSessionUtil;
 import com.iurac.crm.utils.UUIDUtil;
 import com.iurac.crm.vo.EchartsVo;

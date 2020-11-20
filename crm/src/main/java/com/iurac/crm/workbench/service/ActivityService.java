@@ -1,6 +1,5 @@
 package com.iurac.crm.workbench.service;
 
-import com.iurac.crm.settings.domain.User;
 import com.iurac.crm.vo.PaginationVo;
 import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.ActivityRemark;

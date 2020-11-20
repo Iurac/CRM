@@ -2,7 +2,6 @@ package com.iurac.crm.workbench.service.impl;
 
 import com.iurac.crm.utils.SqlSessionUtil;
 import com.iurac.crm.workbench.dao.ContactsDao;
-import com.iurac.crm.workbench.domain.Activity;
 import com.iurac.crm.workbench.domain.Contacts;
 import com.iurac.crm.workbench.service.ContactsService;
 
